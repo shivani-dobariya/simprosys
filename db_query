@@ -1,0 +1,24 @@
+CREATE TYPE status_enum AS ENUM('active', 'deactive');
+
+CREATE TABLE categories(
+    id serial PRIMARY KEY,
+    title VARCHAR (50) UNIQUE NOT NULL,
+	is_deleted boolean,
+-- 	status status_enum,
+    created_ts Integer NOT NULL,
+    updated_ts Integer
+);
+
+
+CREATE TABLE products
+(
+    id serial PRIMARY KEY,
+    title VARCHAR (50) UNIQUE NOT NULL,
+	description text,
+	price FLOAT ,
+	is_deleted boolean,
+	category_id int  references categories(id),
+-- 	status status_enum,
+    created_ts Integer NOT NULL,
+    updated_ts Integer
+);
